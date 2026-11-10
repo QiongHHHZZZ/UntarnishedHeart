@@ -61,13 +61,13 @@ internal class RouteEditor() : CollectionEditorWindowBase<Route>($"路线编辑�
 
         using (var disabled = ImRaii.Disabled(SelectedItem is null))
         {
-            if (ImGuiOm.ButtonIcon("ExportPackage", FontAwesomeIcon.BoxOpen, "导出打包", true) && SelectedItem is not null)
+            if (ImGuiOm.ButtonIcon("ExportPackage", FontAwesomeIcon.BoxOpen, "导出打包") && SelectedItem is not null)
                 ExportPackage(SelectedItem);
         }
 
         ImGui.SameLine();
 
-        if (ImGuiOm.ButtonIcon("ImportPackage", FontAwesomeIcon.FileImport, "导入打包", true))
+        if (ImGuiOm.ButtonIcon("ImportPackage", FontAwesomeIcon.FileImport, "导入打包"))
             ImportPackage();
     }
 

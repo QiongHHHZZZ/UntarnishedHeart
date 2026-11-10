@@ -9,35 +9,48 @@ namespace UntarnishedHeart;
 
 public class Service
 {
-    public static void Init
+    public static async Task InitAsync
     (
-        IDalamudPluginInterface pluginInterface
+        IDalamudPluginInterface pluginInterface,
+        CancellationToken       cancellationToken
     )
     {
-        DService.Init(pluginInterface);
-        DService.Instance().UIBuilder.DisableCutsceneUiHide = true;
+        await DService.InitAsync(pluginInterface, cancellationToken: cancellationToken);
+        await IFramework.Instance().Run
+        (
+            () =>
+            {
+                DService.Instance().UIBuilder.DisableCutsceneUiHide = true;
 
-        var       notifyHelper = NotifyHelper.Instance();
-        using var rented       = new RentedSeStringBuilder();
+                var       notifyHelper = NotifyHelper.Instance();
+                using var rented       = new RentedSeStringBuilder();
 
-        notifyHelper.ChatPrefix = rented.Builder
-                                        .PushColorType(31)
-                                        .Append(SeIconChar.BoxedLetterU.ToIconString())
-                                        .Append(SeIconChar.BoxedLetterT.ToIconString())
-                                        .Append(SeIconChar.BoxedLetterH.ToIconString())
-                                        .PopColorType()
-                                        .ToReadOnlySeString();
-        PluginWindow.Init();
-        PluginCommand.Init();
+                notifyHelper.ChatPrefix = rented.Builder
+                                                .PushColorType(31)
+                                                .Append(SeIconChar.BoxedLetterU.ToIconString())
+                                                .Append(SeIconChar.BoxedLetterT.ToIconString())
+                                                .Append(SeIconChar.BoxedLetterH.ToIconString())
+                                                .PopColorType()
+                                                .ToReadOnlySeString();
+                PluginWindow.Init();
+                PluginCommand.Init();
+            },
+            CancellationToken.None
+        );
     }
 
-    public static void Uninit()
+    public static async Task UninitAsync()
     {
-        PluginCommand.Uninit();
-        ExecutionManager.Dispose();
-        PluginWindow.Uninit();
+        await IFramework.Instance().Run
+        (() =>
+            {
+                PluginCommand.Uninit();
+                ExecutionManager.Dispose();
+                PluginWindow.Uninit();
 
-        PluginConfig.Instance().Save();
-        DService.Uninit();
+                PluginConfig.Instance().Save();
+            }
+        );
+        await DService.UninitAsync();
     }
 }

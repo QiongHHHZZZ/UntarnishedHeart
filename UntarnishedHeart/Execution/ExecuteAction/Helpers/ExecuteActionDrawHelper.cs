@@ -148,8 +148,7 @@ internal static class ExecuteActionDrawHelper
     )
     {
         ImGui.SameLine();
-        if (ImGuiOm.ButtonIcon($"{buttonID}_GetCurrent", FontAwesomeIcon.Bullseye, "取当前位置", true) &&
-            DService.Instance().ObjectTable.LocalPlayer is { } localPlayer0)
+        if (ImGuiOm.ButtonIcon($"{buttonID}_GetCurrent", FontAwesomeIcon.Bullseye, "取当前位置") && DService.Instance().ObjectTable.LocalPlayer is { } localPlayer0)
             setPosition(localPlayer0.Position);
 
         if (getPosition == null)
@@ -157,7 +156,8 @@ internal static class ExecuteActionDrawHelper
 
         ImGui.SameLine();
 
-        if (ImGuiOm.ButtonIcon($"{buttonID}_ToCurrent", FontAwesomeIcon.WheelchairMove, "瞬移至设置坐标", true) &&
+        if (ImGuiOm.ButtonIcon
+                ($"{buttonID}_ToCurrent", FontAwesomeIcon.WheelchairMove, "瞬移至设置坐标") &&
             DService.Instance().ObjectTable.LocalPlayer is { } localPlayer1)
         {
             var target = getPosition();

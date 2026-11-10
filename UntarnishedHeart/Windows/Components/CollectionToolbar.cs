@@ -25,23 +25,23 @@ internal static class CollectionToolbar
         bool   canExport = true
     )
     {
-        if (ImGuiOm.ButtonIcon(saveID, FontAwesomeIcon.Save, "保存", true))
+        if (ImGuiOm.ButtonIcon(saveID, FontAwesomeIcon.Save, "保存"))
             onSave();
 
         ImGui.SameLine();
 
-        if (ImGuiOm.ButtonIcon(addID, FontAwesomeIcon.FileCirclePlus, "新增", true))
+        if (ImGuiOm.ButtonIcon(addID, FontAwesomeIcon.FileCirclePlus, "新增"))
             onAdd();
 
         ImGui.SameLine();
 
-        if (ImGuiOm.ButtonIcon(importID, FontAwesomeIcon.FileImport, "导入", true))
+        if (ImGuiOm.ButtonIcon(importID, FontAwesomeIcon.FileImport, "导入"))
             onImport();
 
         ImGui.SameLine();
 
         using var disabled = ImRaii.Disabled(!canExport);
-        if (ImGuiOm.ButtonIcon(exportID, FontAwesomeIcon.FileExport, "导出", true) && canExport)
+        if (ImGuiOm.ButtonIcon(exportID, FontAwesomeIcon.FileExport, "导出") && canExport)
             onExport();
     }
 }

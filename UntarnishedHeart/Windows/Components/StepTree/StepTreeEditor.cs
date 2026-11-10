@@ -513,7 +513,7 @@ internal static class StepTreeEditor
         FontAwesomeIcon icon,
         string          tooltip
     ) =>
-        ImGuiOm.ButtonIcon(id, icon, tooltip, true);
+        ImGuiOm.ButtonIcon(id, icon, tooltip);
 
     private static void AddActionToCurrentStep
     (

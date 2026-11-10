@@ -165,7 +165,7 @@ public sealed class ConditionCollection : IEquatable<ConditionCollection>
 
         ImGui.NewLine();
 
-        if (ImGuiOm.ButtonIconWithText(FontAwesomeIcon.Plus, "添加新条件", true))
+        if (ImGuiOm.ButtonIconWithText(FontAwesomeIcon.Plus, "添加新条件"))
             Conditions.Add(ConditionBase.CreateDefaultCondition(ConditionDetectType.Health));
 
         ImGui.Spacing();

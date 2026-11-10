@@ -13,8 +13,8 @@ public class SettingsWindow() : Window
     public override void Draw()
     {
         ImGui.SetNextItemWidth(200f * GlobalUIScale);
-        if (ImGui.InputFloat("界面字号###InterfaceFontInput", ref FontManager.Instance().Config.FontSize, 0, 0, "%.1f"))
-            FontManager.Instance().Config.FontSize = Math.Clamp(FontManager.Instance().Config.FontSize, 8, 48);
+        if (ImGui.InputFloat("界面字号###InterfaceFontInput", ref FontManager.Instance().Config.FontScale, 0, 0, "%.1f"))
+            FontManager.Instance().Config.FontScale = Math.Clamp(FontManager.Instance().Config.FontScale, 0.1f, 3);
 
         if (ImGui.IsItemDeactivatedAfterEdit())
         {

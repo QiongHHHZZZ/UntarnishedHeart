@@ -59,7 +59,7 @@ public sealed class GameCommandComplexAction : ExecuteActionBase
         var commandComboClicked = ImGui.IsItemClicked();
 
         ImGui.SameLine();
-        if (ImGuiOm.ButtonIcon("GameCommandComplexDoc", FontAwesomeIcon.Link, COMMAND_DOC_TOOLTIP, true))
+        if (ImGuiOm.ButtonIcon("GameCommandComplexDoc", FontAwesomeIcon.Link, COMMAND_DOC_TOOLTIP))
             Util.OpenLink(COMMAND_DOC_LINK);
 
         if (commandComboClicked)
